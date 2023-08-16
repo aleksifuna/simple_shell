@@ -5,7 +5,7 @@
  *
  * Return: number of characters in a string.
  */
-int str_len( char *str, char term)
+int str_len(char *str, char term)
 {
 	int i;
 
