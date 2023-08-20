@@ -15,6 +15,6 @@ int str_len( char *str, char term);
 int array_len(char **str);
 char *file_link(char *string);
 char **_which(char *arg_str);
-char *get_path(void);
+char *get_path(char *en_var);
 int arg_count(char *arg_string, char sep, char end);
 #endif /* MAIN_H */

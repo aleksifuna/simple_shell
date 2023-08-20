@@ -9,11 +9,11 @@ char *file_link(char *string)
 {
 	int comlen, pathlen, linklen, i, n, m;
 	char **dir_link;
-	char *link, *path;
+	char *link, *path, *process_name;
 	struct stat str;
 
 	comlen = str_len(string, '\0');
-	path = get_path();
+	path = get_path("PATH=");
 	dir_link = token(path, ':', '\0');
 	i = 0;
 	while (dir_link[i] != NULL)
@@ -52,6 +52,8 @@ char *file_link(char *string)
 	free(path);
 	freestarr(dir_link);
 	free(string);
-	perror(string);
+	process_name = get_path("_=");
+	perror(process_name);
+	free(process_name);
 	return (NULL);
 }
