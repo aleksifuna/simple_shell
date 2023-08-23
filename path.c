@@ -1,6 +1,7 @@
 #include "main.h"
 /**
- * get_path - gets the PATH env variable
+ * get_path - returns the value of an environment variable.
+ * @en_var: environment variable key
  *
  * Return: PATH variable
  */

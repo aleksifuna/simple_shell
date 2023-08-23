@@ -1,5 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
+#define BUFFER_SIZE 1024
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
@@ -17,4 +18,8 @@ char *file_link(char *string);
 char **_which(char *arg_str);
 char *get_path(char *en_var);
 int arg_count(char *arg_string, char sep, char end);
+void shell_exit(char *str);
+int string_int(char *string);
+char *get_line(void);
+char *link_const(char *dlink, char *command);
 #endif /* MAIN_H */

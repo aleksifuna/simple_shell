@@ -8,27 +8,14 @@ int main(void)
 {
 	char *lineptr;
 	int status;
-	size_t len;
 	pid_t child_pid;
 	char **arg;
 
 	while (1)
 	{
-		lineptr = NULL;
-		len = 0;
 		write(STDOUT_FILENO, "$ ", 2);
-		if (getline(&lineptr, &len, stdin) == -1)
-		{
-			write(STDOUT_FILENO, "\n", 1);
-			free(lineptr);
-			break;
-		}
-		lineptr[str_len(lineptr, '\n')] = '\0';
-		if (lineptr[0] == '\0')
-		{
-			free(lineptr);
-			continue;
-		}
+		lineptr = get_line();
+		shell_exit(lineptr);
 		arg = _which(lineptr);
 		if (arg == NULL)
 		{
