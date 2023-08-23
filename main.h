@@ -10,9 +10,9 @@
 #include <unistd.h>
 #include <stddef.h>
 extern char **environ;
-char ** token(char *str, char sep, char end);
+char **token(char *str, char sep, char end);
 void freestarr(char **str);
-int str_len( char *str, char term);
+int str_len(char *str, char term);
 int array_len(char **str);
 char *file_link(char *string);
 char **_which(char *arg_str);
