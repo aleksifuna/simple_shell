@@ -24,4 +24,6 @@ char *link_const(char *dlink, char *command);
 char *ni_get_line(char **input, int *idx);
 int str_len(char *str, char term);
 void free_memory(char *str, char **arry);
+void handle_error(void);
+void free_string_memory(char **str, char **arry);
 #endif /* MAIN_H */

@@ -21,6 +21,8 @@ int main(void)
 		}
 		else
 			lineptr = ni_get_line(&input, &index);
+		if (lineptr == NULL)
+			continue;
 		shell_exit(lineptr);
 		arg = _which(lineptr);
 		if (arg == NULL)
@@ -38,8 +40,6 @@ int main(void)
 		if (child_pid == 0)
 		{
 			execve(arg[0], arg, environ);
-			perror("./hsh");
-			return (-2);
 		}
 		else
 			wait(&status);

@@ -21,6 +21,8 @@ char *get_line(void)
 	{
 		perror("Error");
 	}
+	if (buffer[0] == '\n')
+		return (NULL);
 	line = malloc(sizeof(char) * byteRead);
 	for (i = 0; i < byteRead - 1; i++)
 		line[i] = buffer[i];
