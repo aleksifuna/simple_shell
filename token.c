@@ -21,11 +21,11 @@ char **token(char *str, char sep, char end)
 	count = 0;
 	while (1)
 	{
-		if (str[i] != sep && str[i] != end)
+		if (str[i] != sep && str[i] != end && str[i] != ' ')
 		{
 			count++;
 		}
-		else
+		else if ((str[i] == sep || str[i] == end || str[i] == ' ') && count != 0)
 		{
 			av[k] = malloc(sizeof(char) * (count + 1));
 			n = i - count;
@@ -37,11 +37,11 @@ char **token(char *str, char sep, char end)
 			av[k][m] = '\0';
 			k++;
 			count = 0;
-			if (str[i] == end)
-			{
-				av[k] = NULL;
-				break;
-			}
+		}
+		if (str[i] == end)
+		{
+			av[k] = NULL;
+			break;
 		}
 		i++;
 	}
