@@ -15,7 +15,7 @@ char *get_line(void)
 	if (byteRead < 1)
 	{
 		write(STDOUT_FILENO, "\n", 1);
-		exit(1);
+		exit(0);
 	}
 	if (byteRead == -1)
 	{

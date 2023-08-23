@@ -6,15 +6,21 @@
  */
 int main(void)
 {
-	char *lineptr;
-	int status;
+	char *lineptr, *input;
+	int status, index;
 	pid_t child_pid;
 	char **arg;
 
+	index = 0;
 	while (1)
 	{
-		write(STDOUT_FILENO, "$ ", 2);
-		lineptr = get_line();
+		if (isatty(0) == 1)
+		{
+			write(STDOUT_FILENO, "$ ", 2);
+			lineptr = get_line();
+		}
+		else
+			lineptr = ni_get_line(&input, &index);
 		shell_exit(lineptr);
 		arg = _which(lineptr);
 		if (arg == NULL)
@@ -26,22 +32,18 @@ int main(void)
 		if (child_pid == -1)
 		{
 			perror("./hsh");
-			free(lineptr);
-			freestarr(arg);
-			return (98);
+			free_memory(lineptr, arg);
+			return (-1);
 		}
 		if (child_pid == 0)
 		{
 			execve(arg[0], arg, environ);
 			perror("./hsh");
-			return (98);
+			return (-2);
 		}
 		else
-		{
 			wait(&status);
-		}
-		free(lineptr);
-		freestarr(arg);
+		free_memory(lineptr, arg);
 	}
 	return (0);
 }
