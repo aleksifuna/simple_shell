@@ -1,3 +1,4 @@
+#include "main.h"
 /**
  * string_int - converts a string into equivalent integer
  * @string: string to be converted to integer
