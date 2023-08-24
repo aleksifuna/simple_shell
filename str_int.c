@@ -10,8 +10,16 @@ int string_int(char *string)
 
 	while (*string)
 	{
-		results = results * 10 + (*string - '0');
-		string++;
+		if (*string >= '0' && *string <= '9')
+		{
+			results = results * 10 + (*string - '0');
+			string++;
+		}
+		else
+		{
+			perror(string);
+			return (1);
+		}
 	}
 	return (results);
 }
