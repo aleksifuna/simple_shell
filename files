@@ -13,3 +13,4 @@ str_count.c
 string_array_len.c
 test_ls_2
 token.c
+_exit.c

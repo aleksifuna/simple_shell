@@ -8,6 +8,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <stddef.h>
+#include <string.h>
 extern char **environ;
 char ** token(char *str, char sep, char end);
 void freestarr(char **str);
@@ -17,4 +18,7 @@ char *file_link(char *string);
 char **_which(char *arg_str);
 char *get_path(void);
 int arg_count(char *arg_string, char sep, char end);
+void exit_function(void);
+int _atoi(char *s);
+void return_comments(char *buf);
 #endif /* MAIN_H */
