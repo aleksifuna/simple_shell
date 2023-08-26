@@ -6,29 +6,24 @@
  */
 int main(void)
 {
-	char *lineptr;
-	int status;
-	size_t len;
+	char *lineptr, *input;
+	int status, index;
 	pid_t child_pid;
 	char **arg;
 
+	index = 0;
 	while (1)
 	{
-		lineptr = NULL;
-		len = 0;
-		write(STDOUT_FILENO, "$ ", 2);
-		if (getline(&lineptr, &len, stdin) == -1)
+		if (isatty(0) == 1)
 		{
-			write(STDOUT_FILENO, "\n", 1);
-			free(lineptr);
-			break;
+			write(STDOUT_FILENO, "$ ", 2);
+			lineptr = get_line();
 		}
-		lineptr[str_len(lineptr, '\n')] = '\0';
-		if (lineptr[0] == '\0')
-		{
-			free(lineptr);
+		else
+			lineptr = ni_get_line(&input, &index);
+		if (lineptr == NULL)
 			continue;
-		}
+		shell_exit(lineptr);
 		arg = _which(lineptr);
 		if (arg == NULL)
 		{
@@ -39,22 +34,16 @@ int main(void)
 		if (child_pid == -1)
 		{
 			perror("./hsh");
-			free(lineptr);
-			freestarr(arg);
-			return (98);
+			free_memory(lineptr, arg);
+			return (-1);
 		}
 		if (child_pid == 0)
 		{
 			execve(arg[0], arg, environ);
-			perror("./hsh");
-			return (98);
 		}
 		else
-		{
 			wait(&status);
-		}
-		free(lineptr);
-		freestarr(arg);
+		free_memory(lineptr, arg);
 	}
 	return (0);
 }

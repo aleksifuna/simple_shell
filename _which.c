@@ -19,9 +19,8 @@ char **_which(char *arg_str)
 	{
 		if (stat(arg[0], &st) != 0)
 		{
-			perror(arg[0]);
-			freestarr(arg);
-			free(av);
+			handle_error();
+			free_string_memory(av, arg);
 			return (NULL);
 		}
 	}
@@ -30,8 +29,7 @@ char **_which(char *arg_str)
 		arg[0] = file_link(arg[0]);
 		if (arg[0] == NULL)
 		{
-			freestarr(arg);
-			free(av);
+			free_string_memory(av, arg);
 			return (NULL);
 		}
 	}
