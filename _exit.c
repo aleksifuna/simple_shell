@@ -1,38 +1,19 @@
 #include "main.h"
 /**
- * main - terminates calling process
+ *exit_function  - handles the "exit"
  *
  *
- *
+ *Return: nothing
  */
-void exit_function(void)
+void exit_function(char **exit_args, size_t no_of-args)
 {
-	size_t lineptr;
-	char *len = NULL;
-	char *exitcommand = "exit";
-	int i;
+	int status = EXIT_SUCCESS;
 
+	if (exit_args[1])
+		status = _atoi(exit_args[1]);
 
-	i = 0;
-
-
-		write(STDOUT_FILENO, "$ ", 2);
-
-		getline(&len, &lineptr, stdin);
-
-while (len[i]!= 0 && exitcommand[i] != 0)
-{
-
-		if(len[i] != exitcommand[i])
-		{
-			break;
-		}
-
-		i++;
-		free(len);
-
-}
-exit(0);
+	free_vector(exit_args, no_of_args[1]);
+	exit(status);
 }
 
 /**
